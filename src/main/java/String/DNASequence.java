@@ -5,16 +5,17 @@ import java.util.*;
 
 public class DNASequence {
     public Map<Character,Long> dnaMap = new HashMap<Character,Long>(){{
-        put('A',1L);
-        put('C',2L);
-        put('G',3L);
-        put('T',4L);
+        put('A',0L);
+        put('C',1L);
+        put('G',2L);
+        put('T',3L);
 
     }};
 
     public static void main(String[] args) {
         DNASequence dnaSequence = new DNASequence();
         String s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+        String s21 = "ACCCTCCCACTTGGATGCCGCACGTGTCGACTAACCTTACATTGTCCCCCCACCTCCAGACGGTTAACTCTTGAAATGGGGGAATAGCTGCTTGCGCGTG";//["CTAACCTTAC","CCAGACGGTT"]
         System.out.println(dnaSequence.findRepeatedDnaSequences(s));
 
     }
@@ -42,15 +43,15 @@ public class DNASequence {
     public long computeFirstHash(String firstString){
         long res = 0;
         for(int p =1;p<=10;p++){
-            res += (long)Math.pow(2,p)*dnaMap.get(firstString.charAt(10-p));
+            res += (long)Math.pow(4,p-1)*dnaMap.get(firstString.charAt(10-p));
         }
         return res;
     }
 
     public long computeRollingHashValue(String s2,char oldremove, char newadd,long oldhashValue){
-        long res  = oldhashValue - (long)Math.pow(2,10)*dnaMap.get(oldremove);
-        res = res*2L;
-        res = res + 2L*dnaMap.get(newadd);
+        long res  = oldhashValue - (long)Math.pow(4,9)*dnaMap.get(oldremove);
+        res = res*4L;
+        res = res + 1L*dnaMap.get(newadd);
         System.out.println(oldremove +  " : " + newadd);
         System.out.println(s2 +  " : " + res);
 
