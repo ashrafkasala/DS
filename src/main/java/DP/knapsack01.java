@@ -13,6 +13,7 @@ public class knapsack01 {
         System.out.println(knapsack01.findMaxProfit(wt,val,W));
     }
 
+    //tabulation
      int findMaxProfit(int wt[],int val[], int W){
         int n = val.length;
         int dp[][] = new int[n+1][W+1];
@@ -44,5 +45,10 @@ public class knapsack01 {
         System.out.println(Arrays.toString(include));
         return dp[n][W];
      }
+
+     //memorization
+    int findMaxProfitMem(int wt[],int val[], int W){
+        return 0;
+    }
 
 }
